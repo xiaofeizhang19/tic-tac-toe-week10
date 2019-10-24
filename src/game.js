@@ -8,4 +8,29 @@ class Game {
     this._currentPlayer = this._player1;
   }
 
+  play(number) {
+    validateInput(number);
+
+    let playerName = currentPlayer().name;
+    this._board.updateBoard(number, playerName);
+    this.checkResult();
+  }
+
+  currentPlayer() {
+    return this._currentPlayer;
+  }
+  
+  switchTurn() {
+    if (this._currentPlayer === this._player1) {
+      this._currentPlayer = this._player2;
+    } else {
+      this._currentPlayer = this._player1;
+    }
+  }
+
+  validateInput(number) {
+    if (!this._board.flat().includes(number)) {
+      throw 'Invalid input!';
+    }
+  }
 }
