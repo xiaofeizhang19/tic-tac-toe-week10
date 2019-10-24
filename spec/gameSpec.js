@@ -1,5 +1,5 @@
 'use strict';
 
-describe("TicTacToe", function() {
+describe("Game", function() {
 
 });
