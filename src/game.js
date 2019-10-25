@@ -8,14 +8,20 @@ class Game {
     this._currentPlayer = this._player1;
   }
 
+  start() {
+    let display = this._board.displayBoard();
+    display.printBoard();
+  }
+
   play(number) {
     validateInput(number);
 
     let playerName = currentPlayer().name;
     this._board.updateBoard(number, playerName);
+    this._board.printBoard();
     this.checkResult();
   }
-
+X
   currentPlayer() {
     return this._currentPlayer;
   }
@@ -29,8 +35,13 @@ class Game {
   }
 
   validateInput(number) {
-    if (!this._board.flat().includes(number)) {
-      throw 'Invalid input!';
+    if (!Number.isInteger(number) || number < 1 || number > 9) {
+      throw 'Please choose number on board only!';
+    }
+
+    let [row, col] = this._board.positionOnBoard(number);
+    if (this._board.internalBoard()[row][col] !== 0) {
+      throw 'Position already occupied!';
     }
   }
 }
