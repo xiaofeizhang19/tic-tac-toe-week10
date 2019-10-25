@@ -14,8 +14,13 @@ describe("Board", function() {
                                     + "7 | 8 | 9")
   });
 
-  it("should update the board given a number and player name", function() {
+  it("should update the display board given a number and player name", function() {
     board.updateBoard(8, "X");
-    expect(board._board).toEqual([[1, 2, 3], [4, 5, 6], [7, "X", 9]]);
+    expect(board._displayBoard).toEqual([[1, 2, 3], [4, 5, 6], [7, "X", 9]]);
+  });
+
+  it("should update the internal board given a number and player name", function() {
+    board.updateBoard(5, "O");
+    expect(board._internalBoard).toEqual([[0, 0, 0], [0, "O", 0], [0, 0, 0]]);
   });
 });
